@@ -1,20 +1,34 @@
 from flask import Flask, request
-from Parser import parse
+
+import Parser
+import importlib
 import json
 
 
 app = Flask(__name__)
 
 
-@app.route("/post", methods=["POST"])
-def post():
+@app.route("/postFiller", methods=["POST"])
+def postFiller():
     try:
         data = request.data.decode()
         data = json.loads(data)
     except ValueError:
         return "400", 400
-    print(json.dumps(data))
+    print(data)
     return "200", 200
+
+
+@app.route("/postMail", methods=["POST"])
+def postMail():
+    importlib.reload(Parser)
+    try:
+        data = request.data
+        Parser.parse(data)
+    except ValueError:
+        return "400", 400
+    return "200", 200
+
 
 
 @app.route("/get", methods=["GET"])
