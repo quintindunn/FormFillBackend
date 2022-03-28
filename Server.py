@@ -24,7 +24,8 @@ def postMail():
     importlib.reload(Parser)
     try:
         data = request.data
-        Parser.parse(data)
+        results = Parser.parse(data)
+        print(results)
     except ValueError:
         return "400", 400
     return "200", 200
