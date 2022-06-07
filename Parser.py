@@ -41,7 +41,7 @@ def parse(data: bytes):
             "answer": answer,
             "correct": valid
         }
-        if (debugging):
+        if debugging:
             print("\n"*4)
             print(f"{Fore.GREEN if valid else Fore.RED}{valid}{Fore.RESET}:\n\t{Fore.CYAN}{question}{Fore.RESET}\n\n\tYour Answer: {Fore.GREEN if valid else Fore.RED}{answer}{Fore.RESET}")
     return results
